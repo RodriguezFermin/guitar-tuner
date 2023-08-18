@@ -58,32 +58,18 @@ class TunerWidget(Widget):
         self.window_samples = [0 for _ in range(self.WINDOW_SIZE)]
 
     def find_closest_note(self,pitch):
-        """
-        This function finds the closest note for a given pitch
-        Parameters:
-            pitch (float): pitch given in hertz
-        Returns:
-            closest_note (str): e.g. a, g#, ..
-            closest_pitch (float): pitch of the closest note in hertz
-        """
         i = int(np.round(np.log2(pitch/self.CONCERT_PITCH)*12))
         closest_note = self.ALL_NOTES[i%12] + str(4 + (i + 9) // 12)
         closest_pitch = self.CONCERT_PITCH*2**(i/12)
         return closest_note, closest_pitch
 
     def callback(self, indata, frames, time, status):
-        """
-        Callback function of the InputStream method.
-        That's where the magic happens ;)
-        """
-        # define static variables
-        # print('Entro en callback')
         if status:
             self.notas.text=status
             return
         if any(indata):
-            self.window_samples = np.concatenate((self.window_samples, indata[:, 0])) # append new samples
-            self.window_samples = self.window_samples[len(indata[:, 0]):] # remove old samples
+            self.window_samples = np.concatenate((self.window_samples, indata[:, 0]))
+            self.window_samples = self.window_samples[len(indata[:, 0]):]
 
             # skip if signal power is too low
             signal_power = (np.linalg.norm(self.window_samples, ord=2)**2) / len(self.window_samples)
