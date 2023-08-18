@@ -1,0 +1,87 @@
+#:kivy 1.0.9
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import utils kivy.utils
+#:import Gradient kivy_gradient.Gradient
+
+<Circulito>:
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+<Circulon>:
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<TunerWidget>:
+    BoxLayout:
+        canvas:
+            Rectangle:
+                size: root.size
+                pos: root.pos
+                texture: Gradient.vertical(get_color_from_hex("000000"), get_color_from_hex("ff8e43"))
+    Image:
+        source: 'centro.png'
+        allow_stretch: True
+        keep_ratio: True
+        size: root.width/3.2, root.height/3.2
+        center_x: root.width/2
+        center_y: root.height/2
+
+    Circulon:
+        id: _circulo
+        size: 180, 180
+        keep_ratio: True
+        center: self.parent.center
+
+    Circulito:
+        size: 160, 160
+        keep_ratio: True
+        center: self.parent.center
+
+    Image:
+        id: _personaje
+        source: 'grelaaislado.png'
+        allow_stretch: True
+        keep_ratio: True
+        size: root.width/1.5, root.height/1.5
+        center_x: root.width - 160
+    
+    Image:
+        source: 'lefter.png'
+        allow_stretch: True
+        keep_ratio: True
+        size: root.width/1.7, root.height/1.7
+        center_x: root.width / 12
+        center_y: root.height / 2
+ 
+    Image:
+        source: 'afinadortanguero.png'
+        allow_stretch: True
+        keep_ratio: True
+        size: root.width/1.7, root.height/1.7
+        center_x: root.width / 2
+        center_y: root.height -100
+
+    Image:
+        source: 'footer.png'
+        allow_stretch: True
+        keep_ratio: True
+        size: root.width/3, root.height/3
+        center_x: root.width / 2
+        center_y: root.height / 14
+    
+    Switch:
+        id: switch_id
+        on_active: app.cambiar_personaje(self, self.active)
+        size_hint: .2, .1
+
+    Label:
+        id: _notasAfinador
+        center_x: root.width / 2
+        center_y: root.height / 2
+        font_size: 20
+        text:'Starting HPS Tuner...'
+
+
