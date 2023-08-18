@@ -11,6 +11,14 @@ import scipy.fftpack
 import sounddevice as sd
 import time
 
+'''
+GUI made by Fermín Rodríguez.
+
+Guitar tuner script based on the Harmonic Product Spectrum (HPS)
+MIT License
+Copyright (c) 2021 chciken
+check his post on the matter here: https://www.chciken.com/digital/signal/processing/2020/05/13/guitar-tuner.html
+'''
 
 class Circulito(Widget):
     def __init__(self, **kwargs):
