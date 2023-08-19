@@ -7,5 +7,5 @@ The GUI was made with Kivy.
 
 To run just run main.py
 
-I'm currently working on a .apk for mobile usage, will update when i have it ready.
+I'm currently working on a .apk for mobile usage, will update when ready.
 
